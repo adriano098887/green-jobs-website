@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Findings & Conclusions</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+        nav {
+            margin: 20px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            margin: 20px;
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Findings & Conclusions</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="Rec.html">Recommendations</a>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Findings on Green Jobs Impact</h2>
+            <p>Based on our investigation, green jobs have positively impacted the local community by reducing carbon emissions and promoting eco-friendly practices...</p>
+        </section>
+
+        <section>
+            <h2>Key Statistics</h2>
+            <canvas id="statsChart" width="400" height="200"></canvas>
+        </section>
+
+        <section>
+            <h2>Interactive Map of Green Projects</h2>
+            <div id="map"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Green Jobs Awareness</p>
+    </footer>
+
+    <script>
+        // Initialize the chart
+        var ctx = document.getElementById('statsChart').getContext('2d');
+        var statsChart = new Chart(ctx, {
+            type: 'bar', // Change to 'line', 'pie', etc. as needed
+            data: {
+                labels: ['2020', '2021', '2022', '2023'],
+                datasets: [{
+                    label: 'Number of Green Jobs Created',
+                    data: [1000, 1500, 2000, 2500], // Example data
+                    backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                    borderColor: 'rgba(76, 175, 80, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Initialize the map
+        var map = L.map('map').setView([51.505, -0.09], 13); // Set the initial view [latitude, longitude], zoom level
+
+        // Add a tile layer to the map (using OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add a marker to the map
+        L.marker([51.5, -0.09]).addTo(map)
+            .bindPopup('Eco Avengers')
+            .openPopup();
+    </script>
+</body>
+</html>
